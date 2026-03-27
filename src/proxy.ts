@@ -6,16 +6,21 @@ const isPublicRoute = createRouteMatcher([
   "/api/__clerk(.*)",
 ]);
 
+const satelliteOptions =
+  process.env.NEXT_PUBLIC_CLERK_IS_SATELLITE === "true"
+    ? {
+        domain: process.env.NEXT_PUBLIC_CLERK_DOMAIN,
+        isSatellite: true as const,
+      }
+    : {};
+
 export default clerkMiddleware(
   async (auth, request) => {
     if (!isPublicRoute(request)) {
       await auth.protect();
     }
   },
-  {
-    domain: "fulfilment.dardoc.com",
-    isSatellite: true,
-  }
+  satelliteOptions
 );
 
 export const config = {
