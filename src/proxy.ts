@@ -3,25 +3,13 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/api/scan-id(.*)",
-  "/api/__clerk(.*)",
 ]);
 
-const satelliteOptions =
-  process.env.NEXT_PUBLIC_CLERK_IS_SATELLITE === "true"
-    ? {
-        domain: process.env.NEXT_PUBLIC_CLERK_DOMAIN,
-        isSatellite: true as const,
-      }
-    : {};
-
-export default clerkMiddleware(
-  async (auth, request) => {
-    if (!isPublicRoute(request)) {
-      await auth.protect();
-    }
-  },
-  satelliteOptions
-);
+export default clerkMiddleware(async (auth, request) => {
+  if (!isPublicRoute(request)) {
+    await auth.protect();
+  }
+});
 
 export const config = {
   matcher: [
