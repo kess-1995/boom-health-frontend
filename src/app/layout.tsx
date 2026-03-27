@@ -30,6 +30,7 @@ export default function RootLayout({
       </head>
       <body className="h-full">
         <ClerkProvider
+          dynamic
           signInUrl="/sign-in"
           signInForceRedirectUrl="/bookings"
           afterSignOutUrl="/sign-in"
