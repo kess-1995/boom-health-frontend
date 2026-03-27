@@ -21,28 +21,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      signInUrl="/sign-in"
-      signInForceRedirectUrl="/bookings"
-      afterSignOutUrl="/sign-in"
-      localization={{
-        signIn: {
-          start: {
-            titleCombined: "Sign in",
-            subtitle: "to continue to the Fulfillment Portal",
-          },
-        },
-      }}
-    >
-      <html lang="en" className="h-full">
-        <head>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;700&display=swap"
-          />
-        </head>
-        <body className="h-full">{children}</body>
-      </html>
-    </ClerkProvider>
+    <html lang="en" className="h-full">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;700&display=swap"
+        />
+      </head>
+      <body className="h-full">
+        <ClerkProvider
+          signInUrl="/sign-in"
+          signInForceRedirectUrl="/bookings"
+          afterSignOutUrl="/sign-in"
+          localization={{
+            signIn: {
+              start: {
+                titleCombined: "Sign in",
+                subtitle: "to continue to the Fulfillment Portal",
+              },
+            },
+          }}
+        >
+          {children}
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
