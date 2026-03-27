@@ -22,8 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider
-      afterSignInUrl="/bookings"
-      signInForceRedirectUrl="/bookings"
       localization={{
         signIn: {
           start: {

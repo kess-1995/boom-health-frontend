@@ -20,6 +20,7 @@ export default function SignInPage() {
           <p className="mt-0.5 text-xs text-teal/50">Powered by DarDoc</p>
         </div>
         <SignIn
+          forceRedirectUrl="/bookings"
           appearance={{
             elements: {
               formButtonPrimary: "bg-teal hover:bg-dark-teal",
