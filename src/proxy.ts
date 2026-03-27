@@ -6,11 +6,17 @@ const isPublicRoute = createRouteMatcher([
   "/api/__clerk(.*)",
 ]);
 
-export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
-    await auth.protect();
+export default clerkMiddleware(
+  async (auth, request) => {
+    if (!isPublicRoute(request)) {
+      await auth.protect();
+    }
+  },
+  {
+    domain: "fulfilment.dardoc.com",
+    isSatellite: true,
   }
-});
+);
 
 export const config = {
   matcher: [
